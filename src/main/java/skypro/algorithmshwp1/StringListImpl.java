@@ -25,6 +25,10 @@ public class StringListImpl implements StringList{
     public String add(int index, String item) {
         checkIndex(index);
         checkString(item);
+        if (index == size) {
+            this.strings[size++] = item;
+            return item;
+        }
         System.arraycopy(strings, index, strings, index + 1, size - index);
         this.strings[index] = item;
         size++;
@@ -139,7 +143,7 @@ public class StringListImpl implements StringList{
         }
     }
     private void checkIndex (int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundException();
         }
     }
